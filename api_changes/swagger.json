@@ -1,0 +1,207 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Hackathon API",
+    "description" : "Simple project Hackathon API",
+    "contact" : {
+      "email" : "you@your-company.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/ritikwadhwani55/Weather-api/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "tags" : [ {
+    "name" : "developers",
+    "description" : "Operations available to regular developers"
+  } ],
+  "paths" : {
+    "/weather/{city}" : {
+      "get" : {
+        "summary" : "Returns the weather details of a particular city.",
+        "parameters" : [ {
+          "name" : "city",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON object of weather information",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pollution_details/{city}" : {
+      "get" : {
+        "summary" : "Return the pollution information about the queried city passed to the url",
+        "parameters" : [ {
+          "name" : "city",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON object of Pollution information about a specific city",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/coord/{city}" : {
+      "get" : {
+        "summary" : "Return the geographical coordinates of a specific city",
+        "parameters" : [ {
+          "name" : "city",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A JSON Array of Coordinates information about a specific city",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object"
+                  }
+                },
+                "example" : {
+                  "name" : "Pune",
+                  "local_names" : {
+                    "he" : "פונה",
+                    "mr" : "पुणे शहर",
+                    "ur" : "شہر پونے",
+                    "pa" : "ਪੁਣੇ",
+                    "te" : "పూణే",
+                    "en" : "Pune",
+                    "ps" : "پونی",
+                    "zh" : "浦那",
+                    "ml" : "പൂണെ",
+                    "hi" : "पुणे",
+                    "kn" : "ಪುಣೆ",
+                    "ru" : "Пуне",
+                    "fa" : "پونه",
+                    "ar" : "مدينة بونه"
+                  },
+                  "lat" : 18.521428,
+                  "lon" : 73.8544541,
+                  "country" : "IN",
+                  "state" : "Maharashtra"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "inline_response_200" : {
+        "type" : "object",
+        "properties" : {
+          "weather" : {
+            "type" : "array",
+            "example" : [ {
+              "id" : 801,
+              "main" : "Clouds",
+              "description" : "few clouds",
+              "icon" : "02d"
+            } ],
+            "items" : {
+              "type" : "object"
+            }
+          },
+          "main" : {
+            "type" : "object",
+            "example" : {
+              "temp" : 302.07,
+              "feels_like" : 300.8,
+              "temp_min" : 302.07,
+              "temp_max" : 302.07,
+              "pressure" : 1012,
+              "humidity" : 27
+            }
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Pune"
+          }
+        }
+      },
+      "inline_response_200_1" : {
+        "type" : "object",
+        "properties" : {
+          "coord" : {
+            "type" : "object"
+          },
+          "list" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            }
+          }
+        },
+        "example" : {
+          "coord" : {
+            "lon" : 73.8545,
+            "lat" : 18.5214
+          },
+          "list" : [ {
+            "main" : {
+              "aqi" : 5
+            },
+            "components" : {
+              "co" : 2243.04,
+              "no" : 35.32,
+              "no2" : 55.52,
+              "o3" : 0.01,
+              "so2" : 48.16,
+              "pm2_5" : 252.29,
+              "pm10" : 309.16,
+              "nh3" : 86.13
+            },
+            "dt" : 1671672625
+          } ]
+        }
+      }
+    }
+  }
+}
